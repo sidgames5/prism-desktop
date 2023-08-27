@@ -3,9 +3,14 @@ package;
 import activities.MainActivity;
 import activities.WelcomeActivity;
 import config.Chats;
+import config.Hosts;
 import config.Profiles;
 import flixel.FlxG;
 import flixel.FlxGame;
+import flixel.system.scaleModes.BaseScaleMode;
+import flixel.system.scaleModes.FixedScaleAdjustSizeScaleMode;
+import flixel.system.scaleModes.RatioScaleMode;
+import flixel.system.scaleModes.RelativeScaleMode;
 import haxe.crypto.Sha256;
 import haxe.io.Bytes;
 import openfl.Lib;
@@ -34,7 +39,7 @@ class Main extends Sprite {
 		Chats.add({
 			name: "Test convo 1",
 			icon: null,
-			host: "s1.prism.local",
+			host: Hosts.getFirst(),
 			convoId: 1
 		});
 

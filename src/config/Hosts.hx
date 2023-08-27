@@ -1,7 +1,7 @@
 package config;
 
 class Hosts {
-	private static var list = ["http://s1.prism.local", "http://s2.prism.local"];
+	private static var list = ["s1.prism.local", "s2.prism.local"];
 
 	public static function getAll() {
 		return list;
@@ -20,6 +20,10 @@ class Hosts {
 	}
 
 	public static function update() {
+		// TODO
+	}
+
+	public static function report() {
 		// TODO
 	}
 }

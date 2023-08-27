@@ -44,5 +44,6 @@ class Main extends Sprite {
 			Lib.current.addChild(new FlxGame(0, 0, MainActivity, 60, 60, true, false));
 		}
 		FlxG.autoPause = false;
+		FlxG.mouse.useSystemCursor = true;
 	}
 }

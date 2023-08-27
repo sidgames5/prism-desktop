@@ -1,18 +1,10 @@
 package activities;
 
-import config.Profiles;
+import Reference.sf;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.addons.ui.FlxInputText;
-import flixel.input.android.FlxAndroidKey;
-import flixel.input.android.FlxAndroidKeys;
 import flixel.text.FlxText;
-import gui.InputField;
-import openfl.text.TextField;
-import openfl.ui.Keyboard;
-import prism.chat.Sender;
-import structs.Chat;
 import util.Colors;
 
 class WelcomeActivity extends FlxState {
@@ -35,34 +27,42 @@ class WelcomeActivity extends FlxState {
 		background.screenCenter(XY);
 		add(background);
 
-		title = new FlxText(0, 0, 0, "Prism").setFormat("OpenSans-Regular.ttf", 256, Colors.BLACK, CENTER);
+		title = new FlxText(0, 0, 0, "Prism Chat").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 256), Colors.BLACK, CENTER);
 		// title.wordWrap = true;
 		title.screenCenter(X);
 		title.y = FlxG.height / 10;
 		add(title);
-		subtitle = new FlxText(0, 0, 0, "A new way to chat").setFormat("OpenSans-Light.ttf", 112, Colors.BLACK, CENTER);
+		subtitle = new FlxText(0, 0, 0, "A new way to chat").setFormat("OpenSans-Light.ttf", Math.round(112 * sf()), Colors.BLACK, CENTER);
 		// subtitle.wordWrap = true;
 		subtitle.screenCenter(X);
 		subtitle.y = title.y + title.height;
 		add(subtitle);
 
-		signupButton = new FlxText(0, 0, 0, "Sign up").setFormat("OpenSans-Regular.ttf", 96, Colors.WHITE);
+		signupButton = new FlxText(0, 0, 0, "Sign up").setFormat("OpenSans-Regular.ttf", Math.round(96 * sf()), Colors.WHITE);
 		signupButton.screenCenter(XY);
+		signupButton.y += FlxG.height / 4;
 		signupButtonBg = new FlxSprite();
 		signupButtonBg.makeGraphic(cast signupButton.width + 25, cast signupButton.height + 25, Colors.DARKER);
 		signupButtonBg.screenCenter(XY);
+		signupButtonBg.y += FlxG.height / 4;
 		add(signupButtonBg);
 		add(signupButton);
 
-		loginButton = new FlxText(0, 0, 0, "Login").setFormat("OpenSans-Regular.ttf", 96, Colors.BLACK);
+		loginButton = new FlxText(0, 0, 0, "Login").setFormat("OpenSans-Regular.ttf", Math.round(96 * sf()), Colors.BLACK);
 		loginButton.screenCenter(XY);
-		loginButton.y += signupButtonBg.height * 1.25;
+		loginButton.y = signupButton.y;
 		loginButtonBg = new FlxSprite();
 		loginButtonBg.makeGraphic(cast loginButton.width + 25, cast loginButton.height + 25, Colors.LIGHT_GRAY);
 		loginButtonBg.screenCenter(XY);
-		loginButtonBg.y += signupButtonBg.height * 1.25;
+		loginButtonBg.y = signupButtonBg.y;
 		add(loginButtonBg);
 		add(loginButton);
+
+		var lswidth = signupButtonBg.width + loginButtonBg.width;
+		signupButton.x -= lswidth / 2;
+		signupButtonBg.x -= lswidth / 2;
+		loginButton.x += lswidth / 2;
+		loginButtonBg.x += lswidth / 2;
 	}
 
 	override public function update(elapsed:Float) {

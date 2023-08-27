@@ -11,6 +11,7 @@ import prism.accounts.Accounts;
 import prism.chat.Conversations;
 import prism.util.structs.Account;
 import util.Colors;
+import Reference.sf;
 
 using StringTools;
 
@@ -40,7 +41,7 @@ class AddConvoActivity extends FlxState {
 		background.screenCenter(XY);
 		add(background);
 
-		title = new FlxText(0, 0, 0, "New Chat").setFormat("OpenSans-Regular.ttf", 96, Colors.WHITE, CENTER);
+		title = new FlxText(0, 0, 0, "New Chat").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 96), Colors.WHITE, CENTER);
 		title.screenCenter(X);
 		titleBg = new FlxSprite(0, 0);
 		titleBg.makeGraphic(FlxG.width, cast title.height, Colors.DARKER);
@@ -51,12 +52,12 @@ class AddConvoActivity extends FlxState {
 		backButton.loadGraphic("res/images/back.png");
 		add(backButton);
 
-		nameField = new InputField(0, 0, FlxG.width, "Chat name", 96, Colors.BLACK, Colors.LIGHT_GRAY);
+		nameField = new InputField(0, 0, FlxG.width, "Chat name", Math.round(sf() * 96), Colors.BLACK, Colors.LIGHT_GRAY);
 		nameField.font = "OpenSans-Regular.ttf";
 		nameField.y = titleBg.height + titleBg.y;
 		add(nameField);
 
-		participantField = new InputField(0, 0, FlxG.width - 192, "Number of user", 96, Colors.BLACK, Colors.LIGHT_GRAY);
+		participantField = new InputField(0, 0, FlxG.width - 192, "Number of user", Math.round(sf() * 96), Colors.BLACK, Colors.LIGHT_GRAY);
 		participantField.font = "OpenSans-Regular.ttf";
 		participantField.y = nameField.frameHeight + nameField.y;
 		add(participantField);
@@ -67,7 +68,7 @@ class AddConvoActivity extends FlxState {
 		participantButton.y = participantField.y;
 		add(participantButton);
 
-		createButton = new FlxText(0, 0, 0, "Create").setFormat("OpenSans-Regular.ttf", 64, Colors.BLACK);
+		createButton = new FlxText(0, 0, 0, "Create").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 64), Colors.BLACK);
 		createButton.screenCenter(X);
 		createButton.y = FlxG.height - createButton.height;
 		add(createButton);
@@ -103,7 +104,7 @@ class AddConvoActivity extends FlxState {
 	}
 
 	private function addParticipant(p:Account) {
-		var ft = new FlxText(0, 0, 0, p.profile.displayName).setFormat("OpenSans-Regular.ttf", 64, Colors.BLACK);
+		var ft = new FlxText(0, 0, 0, p.profile.displayName).setFormat("OpenSans-Regular.ttf", Math.round(sf() * 64), Colors.BLACK);
 		if (participants.length > 0)
 			ft.y = participants[participants.length - 1].y + participants[participants.length - 1].height;
 		else

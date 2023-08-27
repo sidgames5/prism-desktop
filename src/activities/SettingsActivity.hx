@@ -1,5 +1,6 @@
 package activities;
 
+import Reference.sf;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -27,7 +28,7 @@ class SettingsActivity extends FlxState {
 		background.screenCenter(XY);
 		add(background);
 
-		title = new FlxText(0, 0, 0, "Prism").setFormat("OpenSans-Regular.ttf", 96, Colors.WHITE, CENTER);
+		title = new FlxText(0, 0, 0, "Prism Chat").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 96), Colors.WHITE, CENTER);
 		title.screenCenter(X);
 		titleBg = new FlxSprite(0, 0);
 		titleBg.makeGraphic(FlxG.width, cast title.height, Colors.DARKER);
@@ -35,11 +36,11 @@ class SettingsActivity extends FlxState {
 		add(title);
 
 		var tb = titleBg.y + titleBg.height;
-		selectorText1 = new FlxText(0, tb, 0, "Chats").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText1 = new FlxText(0, tb, 0, "Chats").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText1.x = (FlxG.width / selectorItems) / 2 - (selectorText1.width / 2);
-		selectorText2 = new FlxText(0, tb, 0, "Settings").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText2 = new FlxText(0, tb, 0, "Settings").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText2.x = (FlxG.width / selectorItems) / 2 - (selectorText2.width / 2) + ((FlxG.width / 3) * 2);
-		selectorText3 = new FlxText(0, tb, 0, "Phone").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText3 = new FlxText(0, tb, 0, "Phone").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText3.x = (FlxG.width / selectorItems) / 2 - (selectorText3.width / 2) + ((FlxG.width / 3));
 		selectorBg = new FlxSprite(0, tb);
 		selectorBg.makeGraphic(FlxG.width, cast selectorText1.height, Colors.DARKEST);
@@ -59,7 +60,7 @@ class SettingsActivity extends FlxState {
 
 		if (FlxG.mouse.overlaps(selectorText1) && FlxG.mouse.justPressed)
 			FlxG.switchState(new MainActivity());
-		if (FlxG.mouse.overlaps(selectorText2) && FlxG.mouse.justPressed)
+		if (FlxG.mouse.overlaps(selectorText3) && FlxG.mouse.justPressed)
 			FlxG.switchState(new PhoneActivity());
 	}
 }

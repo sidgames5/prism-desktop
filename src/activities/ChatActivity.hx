@@ -1,5 +1,6 @@
 package activities;
 
+import Reference.sf;
 import cache.Received;
 import config.Profiles;
 import flixel.FlxG;
@@ -51,7 +52,7 @@ class ChatActivity extends FlxState {
 		background.screenCenter(XY);
 		add(background);
 
-		title = new FlxText(0, 0, 0, currentChat.name).setFormat("OpenSans-Regular.ttf", 96, Colors.WHITE, CENTER);
+		title = new FlxText(0, 0, 0, currentChat.name).setFormat("OpenSans-Regular.ttf", Math.round(sf() * 96), Colors.WHITE, CENTER);
 		title.screenCenter(X);
 		titleBg = new FlxSprite(0, 0);
 		titleBg.makeGraphic(FlxG.width, cast title.height, Colors.DARKER);
@@ -62,13 +63,13 @@ class ChatActivity extends FlxState {
 		backButton.loadGraphic("res/images/back.png");
 		add(backButton);
 
-		textField = new InputField(0, 0, FlxG.width - 192, "Type a message", 96, Colors.BLACK, Colors.LIGHT_GRAY);
+		textField = new InputField(0, 0, FlxG.width - 192, "Type a message", Math.round(sf() * 96), Colors.BLACK, Colors.LIGHT_GRAY);
 		textField.fieldWidth = FlxG.width - textField.height;
 		textField.lines = 1;
 		textField.maxLength = 500;
 		textField.font = "OpenSans-Regular.ttf";
 		textField.x = 0;
-		textField.y = titleBg.y + titleBg.height;
+		textField.y = FlxG.height - textField.height;
 		add(textField);
 
 		sendButtonBg = new FlxSprite();
@@ -112,6 +113,20 @@ class ChatActivity extends FlxState {
 			fetch();
 		}
 
+		if (FlxG.keys.justPressed.ENTER && sendButtonBg.color == Colors.DARK) {
+			var mc = textField.text;
+			var ma = Profiles.convertAuthorProfile(Profiles.getActiveProfile());
+			var mt = Sys.time();
+			Sender.send({
+				content: mc,
+				author: ma,
+				timestamp: cast mt,
+				crc32: Crc32.make(Bytes.ofString(mc + ma + mt))
+			}, currentChat.host + "/" + currentChat.convoId);
+			textField.text = "Type a message";
+			fetch();
+		}
+
 		if (textField.text.length > 0 && textField.text != "Type a message")
 			sendButtonBg.color = Colors.DARK;
 		else
@@ -123,7 +138,7 @@ class ChatActivity extends FlxState {
 			var t = dm.message.author.displayName + ": " + dm.message.content;
 			if (dm.self)
 				t = dm.message.content;
-			var fm = new FlxText(0, 0, 0, t).setFormat("OpenSans-Regular.ttf", 64, Colors.BLACK);
+			var fm = new FlxText(0, 0, 0, t).setFormat("OpenSans-Regular.ttf", Math.round(sf() * 64), Colors.BLACK);
 			var cs = Crc32.make(Bytes.ofString(dm.message.content + dm.message.author + dm.message.timestamp));
 			if (cs != dm.message.crc32)
 				fm.color = FlxColor.RED;

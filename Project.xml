@@ -6,7 +6,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Prism" file="prism-android" main="Main" version="23.8.1" company="SidGames5" />
+	<app title="Prism Chat" file="prismchat" main="Main" version="23.8.1" company="SidGames5" />
 
 	<!--The
 	flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a
@@ -22,13 +22,13 @@
 
 	<!--These
 	window settings apply to all targets-->
-	<window width="450" height="800" fps="60" background="#000000" hardware="false" vsync="false" />
+	<window width="640" height="480" fps="60" background="#000000" hardware="false" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="false" />
 
 	<!--Desktop-specific-->
-	<window if="desktop" fullscreen="false" resizable="true" />
+	<window if="desktop" fullscreen="false" resizable="false" />
 
 	<!--Mobile-specific-->
 	<window if="mobile" fullscreen="true" width="0" height="0" />

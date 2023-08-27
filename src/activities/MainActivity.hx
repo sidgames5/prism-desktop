@@ -1,5 +1,6 @@
 package activities;
 
+import Reference.sf;
 import config.Chats;
 import flixel.FlxBasic;
 import flixel.FlxG;
@@ -43,7 +44,7 @@ class MainActivity extends FlxState {
 		background.screenCenter(XY);
 		add(background);
 
-		title = new FlxText(0, 0, 0, "Prism").setFormat("OpenSans-Regular.ttf", 96, Colors.WHITE, CENTER);
+		title = new FlxText(0, 0, 0, "Prism Chat").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 96), Colors.WHITE, CENTER);
 		title.screenCenter(X);
 		titleBg = new FlxSprite(0, 0);
 		titleBg.makeGraphic(FlxG.width, cast title.height, Colors.DARKER);
@@ -51,11 +52,11 @@ class MainActivity extends FlxState {
 		add(title);
 
 		var tb = titleBg.y + titleBg.height;
-		selectorText1 = new FlxText(0, tb, 0, "Chats").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText1 = new FlxText(0, tb, 0, "Chats").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText1.x = (FlxG.width / selectorItems) / 2 - (selectorText1.width / 2);
-		selectorText2 = new FlxText(0, tb, 0, "Settings").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText2 = new FlxText(0, tb, 0, "Settings").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText2.x = (FlxG.width / selectorItems) / 2 - (selectorText2.width / 2) + ((FlxG.width / 3) * 2);
-		selectorText3 = new FlxText(0, tb, 0, "Phone").setFormat("OpenSans-Regular.ttf", 72, Colors.WHITE, CENTER);
+		selectorText3 = new FlxText(0, tb, 0, "Phone").setFormat("OpenSans-Regular.ttf", Math.round(sf() * 72), Colors.WHITE, CENTER);
 		selectorText3.x = (FlxG.width / selectorItems) / 2 - (selectorText3.width / 2) + ((FlxG.width / 3));
 		selectorBg = new FlxSprite(0, tb);
 		selectorBg.makeGraphic(FlxG.width, cast selectorText1.height, Colors.DARKEST);
@@ -70,7 +71,7 @@ class MainActivity extends FlxState {
 		add(selectorUnderline);
 
 		for (chat in chats) {
-			var text = new FlxText(0, 0, 0, chat.name).setFormat("OpenSans-Regular.ttf", 84, Colors.BLACK, LEFT);
+			var text = new FlxText(0, 0, 0, chat.name).setFormat("OpenSans-Regular.ttf", Math.round(sf() * 84), Colors.BLACK, LEFT);
 			var hh = selectorBg.y + selectorBg.height;
 			if (hitboxes.length > 0)
 				hh = hitboxes[hitboxes.length - 1].y + hitboxes[hitboxes.length - 1].height;
